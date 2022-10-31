@@ -3,10 +3,9 @@
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhead{}
 \usepackage{multicol}
+\usepackage{lipsum}% for some dummy text
 \setlength{\columnsep}{1.2cm}
-\fancyfoot{}
 \tolerance=1
 \emergencystretch = \maxdimen
 \hyphenpenalty   =10000
@@ -14,6 +13,7 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 \usepackage{array}
+\usepackage{longtable}
 \usepackage{csquotes}
 \usepackage{xcolor}
 \usepackage{listings}
@@ -28,7 +28,7 @@
 \usepackage{courier}
 \usepackage[T1]{fontenc}
 \pagecolor{white}
-\fancyfoot[RO]{\thepage}       % footer
+\fancyfoot[R]{}
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
   {\normalfont\bfseries}{}{0pt}{\LARGE}

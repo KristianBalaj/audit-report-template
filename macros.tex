@@ -1,6 +1,6 @@
 %======================================================================== macros
 % page header
-\newcommand{\pHeader}[2]{\fancyhead[LO]{\textbf{#1}}\fancyhead[RO]{#2}}
+\newcommand{\pHeader}[2]{\fancyhead[L]{\textbf{#1}}\fancyhead[R]{#2}}
 % italics
 \newcommand{\it}[1]{\emph{#1}}
 % dictionary
@@ -24,7 +24,7 @@
 %% #7 Provided Proof
 %% #8 Recommended Fix
 %% #9 Links
-\newcommand{\vuln}[9]{
+\newcommand{\vuln}[8]{
   \subsection{#1}
   \dictionary{Metric}{Result}{
     \item [\hfill CVSS-V3 Rating:]{\begin{itemize}\item\href{#3}{#2}\end{itemize}}
@@ -32,15 +32,14 @@
   }
   \subsubsection{Description}
   #5
-  \subsubsection {How To Reproduce}
+  \subsubsection {How To Reproduce/Provided Proof}
   #6
-  \subsubsection {Provided Proof}
-  #7
   \subsubsection {Recommended Fix}
-  #8
+  #7
   \subsubsection {Links}
-  \begin{itemize}#9\end{itemize}
+  \begin{itemize}#8\end{itemize}
 }
+
 %report
 %% #1 Project Name
 %% #2 Contents
@@ -48,16 +47,21 @@
         \documentclass[8pt]{report}
         %=HEADER========================================================================
         \input    {style.tex}
-        \title    {\textbf{#1}\\Audit Report\vspace{10cm}}
+        \title    {\textbf{#1}\\
+                   Audit Report\\
+                   \includegraphics[scale=0.5,valign=c]{linked-files/images/MLabs-logo.jpg}
+                   \vspace{8cm}}
         \author   {MLabs Audit Team}
         \date	  {\today}
         \pHeader  {#1}{Audit Report}
         \maketitle
         \tableofcontents
+        \listoffigures
+        \listoftables
         %=DOCUMENT=======================================================================
         \begin{document}
-        \pagecolor{white}
         \input{linked-files/disclaimer.tex}
+        \pagestyle{fancy}
         #2
         \end {document}
         %================================================================================
