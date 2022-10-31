@@ -18,26 +18,27 @@
 %% #1 Title
 %% #2 CVSS rating
 %% #3 CVSS Rating Calculator Link
-%% #4 Vulnerability Types
-%% #5 Description
-%% #6 How to reproduce
-%% #7 Provided Proof
+%% #4 Severity
+%% #5 Vulnerability Types
+%% #6 Description
+%% #7 How to reproduce/ Provided Proof
 %% #8 Recommended Fix
 %% #9 Links
-\newcommand{\vuln}[8]{
+\newcommand{\vuln}[9]{
   \subsection{#1}
   \dictionary{Metric}{Result}{
-    \item [\hfill CVSS-V3 Rating:]{\begin{itemize}\item\href{#3}{#2}\end{itemize}}
-    \item [\hfill Vulnerability Type:]{\begin{itemize}#4\end{itemize}}
+  \item [\hfill CVSS-V3 Rating:]{\begin{itemize}\item\href{#3}{#2}\end{itemize}}
+  \item [\hfill Severity:]{\begin{itemize}#4\end{itemize}}
+  \item [\hfill Vulnerability Type:]{\begin{itemize}#5\end{itemize}}
   }
   \subsubsection{Description}
-  #5
-  \subsubsection {How To Reproduce/Provided Proof}
   #6
-  \subsubsection {Recommended Fix}
+  \subsubsection {How To Reproduce/Provided Proof}
   #7
-  \subsubsection {Links}
-  \begin{itemize}#8\end{itemize}
+  \subsubsection {Recommended Fix}
+  #8
+  \subsubsection {References}
+  \begin{itemize}#9\end{itemize}
 }
 
 %report
