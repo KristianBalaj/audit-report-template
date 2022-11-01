@@ -22,7 +22,7 @@
           # ^ root folder
 
         , imported-files ?
-          " $td/style.tex $td/macros.tex  $td/Makefile $td/linked-files "
+          " $td/scripts $td/linked-files "
           # ^ files that get imported and are available to the environment - these
           # files also get symlinked in the dev environment
 
@@ -37,20 +37,18 @@
           # therefore no linking is needed. 
         }:
         stdenv.mkDerivation {
-          inherit td src name;
+          inherit td src name imported-files;
 
           buildInputs = with nixpkgs;
-            [
-              texlive.combined.scheme-full
-              pandoc
-            ] # packages for latex and file processing
+            [ markdown-pp pandoc ]              # packages for latex and file processing
             ++ [ graphviz zathura entr nixfmt ] # packages for  dev environment
           ;
 
           buildPhase = " cp -fr ${imported-files}  .  ";
 
           installPhase = ''
-            make 
+            mkdir _build
+            ./scripts/compile-files.sh ${file-name}.mdpp _build/${file-name}.md _build/${file-name}.pdf
             mkdir $out
             cp ${location}/_build/${file-name}.pdf $out/$(date +%y%m%d)-${file-name}.pdf
           '';
