@@ -13,6 +13,11 @@
 
       build-report = with import nixpkgs { inherit system; };
         { src ? "."
+
+        }
+
+      build-report = with import nixpkgs { inherit system; };
+        { src ? "."
         # ^ source where the latex files can be found
 
         , file-name ? "audit-report"
