@@ -50,6 +50,7 @@
               aspellDicts.en
               aspellDicts.en-computers
               aspellDicts.en-science
+              nodePackages.prettier
             ] # packages for dev environment
           ;
 
@@ -75,6 +76,15 @@
             } list
           '';
 
+          formatMd = ''
+            #!/bin/sh
+
+            # \"prose-wrap never\" is necessary to avoid tables having a
+            # bunch of extra whitespace added, which can mess up the
+            # rendering. See https://github.com/prettier/prettier/issues/5651
+            prettier --prose-wrap never --write \$(fd --extension md --exclude _build/)
+          '';
+
           installPhase = ''
             mkdir _build
             ./scripts/compile-files.sh ${file-name}.mdpp _build/${file-name}.md _build/${file-name}.pdf
@@ -82,20 +92,22 @@
             cp ${location}/_build/${file-name}.pdf $out/$(date +%y%m%d)-${file-name}.pdf
           '';
 
-          shellHook = if localFlag then ''
-            echo "> Welcome to the audit-report shell."
-          '' else ''
+          shellHook = (if localFlag then "" else ''
             echo "> linking template files:"
             ln -sf ${imported-files} .
+          '') + ''
             mkdir -p $out
+            echo "${
+              self.defaultPackage.${system}.formatMd
+            }" > $out/format-md.sh
             echo "${
               self.defaultPackage.${system}.spellCheck
             }" > $out/spell-check.sh
             echo "${
               self.defaultPackage.${system}.spellCheckInteractive
             }" > $out/spell-check-interactive.sh
-            chmod +x $out/spell-check{,-interactive}.sh
-            ln -sf $out/spell-check{,-interactive}.sh .
+            chmod +x $out/{format-md,spell-check{,-interactive}}.sh
+            ln -sf $out/{format-md,spell-check{,-interactive}}.sh .
             echo "> Welcome to the audit-report shell."
           '';
         };
