@@ -1,14 +1,7 @@
 # Disclaimer
 
-## Warranty Disclaimer
+**This audit report is presented without warranty or guarantee of any type. Neither MLabs nor its auditors can assume any liability whatsoever for the use, deployment or operations of the audited code.** This report lists the most salient concerns that have become apparent to MLabs auditors after an inspection of the project's codebase and documentation, given the time available for the audit. Corrections may arise, including the revision of incorrectly reported issues. Therefore, MLabs advises against making any business or other decisions based on the contents of this report.
 
-The following report is presented without any guaranty or warranty. The
-following report lists all the issues found by MLabs during the Audit
-process. Corrections, such as the cancellation of incorrectly reported issues
-may arise. MLabs advises against making business decisions based on the following
-report.
+An audit does not guarantee security. Reasoning about security requires careful considerations about the capabilities of the assumed adversaries. These assumptions and the time bounds of the audit can impose realistic constraints on the exhaustiveness of the audit process. Furthermore, the audit process can involve manual inspection and work which is subject to human error.
 
-The audit report focuses on the implementation, in relation to the technical
-specification provided by the client, the project's contractors, and
-subcontractors. The report is not meant to assess the business validity, the
-design, financial viability, or suitability of the product.
+**MLabs does not recommend for or against the use of any work or supplier mentioned in this report.** This report focuses on the technical implementation provided by the project's contractors and subcontractors, based on the information they provided, and is not meant to assess the concept, mathematical validity, or business validity of their product. This report does not assess the implementation regarding financial viability nor suitability for any purpose.
