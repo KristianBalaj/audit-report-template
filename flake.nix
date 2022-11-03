@@ -57,7 +57,7 @@
           buildPhase = " cp -fr ${imported-files}  .  ";
 
           spellCheckOpts = with nixpkgs; ''
-            --lang=en_US --mode=markdown --home-dir=./ --run-together --camel-case \\
+            --lang=en_GB --mode=markdown --home-dir=./ --run-together --camel-case \\
             --dict-dir=${aspellDicts.en}/lib/aspell \\
             --lset-extra-dicts ${aspellDicts.en-computers}/lib/aspell/en-computers.rws:${aspellDicts.en-science}/lib/aspell/en_GB-science.rws:${aspellDicts.en-science}/lib/aspell/en_US-science.rws \\
           '';
