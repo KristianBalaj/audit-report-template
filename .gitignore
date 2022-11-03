@@ -6,3 +6,4 @@ _build
 spell-check-interactive.sh
 spell-check.sh
 format-md.sh
+*.bak
