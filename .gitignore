@@ -1,3 +1,9 @@
 result
 *swp
 _build
+.vscode
+/outputs/
+spell-check-interactive.sh
+spell-check.sh
+format-md.sh
+*.bak
