@@ -37,9 +37,8 @@
         }:
         stdenv.mkDerivation {
           inherit td src name imported-files;
-
           buildInputs = with nixpkgs;
-            [ markdown-pp pandoc ] # packages for latex and file processing
+            [ markdown-pp pandoc texlive.combined.scheme-full ] # packages for latex and file processing
             ++ [
               graphviz
               zathura
@@ -55,6 +54,12 @@
           ;
 
           buildPhase = " cp -fr ${imported-files}  .  ";
+          
+          runBuild = ''
+            #!/bin/sh
+            mkdir -p _build
+            ./scripts/compile-files.sh ./audit-report.md ./_build/audit-report.md ./_build/audit-report.pdf
+          '';
 
           spellCheckOpts = with nixpkgs; ''
             --lang=en_GB --mode=markdown --home-dir=./ --run-together --camel-case \\
@@ -87,9 +92,9 @@
 
           installPhase = ''
             mkdir _build
-            ./scripts/compile-files.sh ${file-name}.mdpp _build/${file-name}.md _build/${file-name}.pdf
+            ./scripts/compile-files.sh ${file-name}.md _build/${file-name}.md _build/${file-name}.pdf
             mkdir $out
-            cp ${location}/_build/${file-name}.pdf $out/$(date +%y%m%d)-${file-name}.pdf
+            cp _build/${file-name}.pdf $out/$(date +%y%m%d)-${file-name}.pdf
           '';
 
           shellHook = (if localFlag then "" else ''
@@ -106,6 +111,10 @@
             echo "${
               self.defaultPackage.${system}.spellCheckInteractive
             }" > $out/spell-check-interactive.sh
+            echo "${
+              self.defaultPackage.${system}.runBuild
+            }" > ./run-build.sh
+            chmod +x run-build.sh
             chmod +x $out/{format-md,spell-check{,-interactive}}.sh
             ln -sf $out/{format-md,spell-check{,-interactive}}.sh .
             echo "> Welcome to the audit-report shell."
