@@ -446,8 +446,9 @@ $endif$
 \begin{document}
 % additional set-up
 \pagestyle{fancy}
-\fancyhead[R]{$subtitle$}
-\fancyhead[C]{$title$}
+\fancyhead[L]{$title$~\\\nouppercase{\textsl{\rightmark}}}
+\fancyhead[C]{~\\~}
+\fancyhead[R]{$subtitle$\\~}
 \fancyfoot[L]{\includegraphics[height=0.75cm]{MLabs-logo-cropped}}
 \fancyfoot[C]{}
 \fancyfoot[R]{\thepage}
